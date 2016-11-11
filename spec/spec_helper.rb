@@ -1,2 +1,2 @@
-$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
-require "fast_csv_importer"
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+require 'fast_csv_importer'
