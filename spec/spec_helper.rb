@@ -1,2 +1,4 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'fast_csv_importer'
+require 'activerecord_csv_importer'
+
+require 'active_model'
