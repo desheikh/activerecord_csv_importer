@@ -1,11 +1,8 @@
 # ActiveRecordCSVImporter
 
-Using bulk inserts, the goal for ActiveRecordCSVImporter is to speed up the processing of large CSV filed
+ActiveRecordCSVImporter is a modified version CSVImporter, which uses activerecord-import to speed up processing.
 
-## Differences from CSVImporter
-
-The key difference with ActiveRecordCSVImporter is the removal of callback support, since that is incompatible with bulk inserts.
-Additional config options are available instead to deal with batching and duplicate index support.
+The key difference with CSVImporter is the removal of callback support, since that is incompatible with bulk inserts. Additional config options are available instead to deal with batching and index conflicts.
 
 It is compatible with ActiveRecord and any Databases supported by activerecord-import.
 
@@ -323,6 +320,10 @@ You can handle exotic encodings with the `encoding` option.
 ImportUserCSV.new(content: "メール,氏名".encode('SJIS'), encoding: 'SJIS:UTF-8')
 ```
 
+## TODO
+  - Add ability to configure activerecord-import validate: Bool option.
+  - Allow setting a default attribute on columns.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -331,7 +332,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/activerecord_csv_importer.
+Bug reports and pull requests are welcome on GitHub at https://github.com/desheikh/activerecord_csv_importer.
 
 ## License
 
