@@ -38,7 +38,7 @@ module ActiveRecordCSVImporter
     end
 
     def import_rows(set)
-      config.model.import(header.column_definition_names.dup, set, config.on_duplicate_key)
+      config.model.import(header.columns_with_definition_names.dup, set, config.on_duplicate_key)
     end
 
     def add_to_report(response, set)
@@ -50,7 +50,7 @@ module ActiveRecordCSVImporter
     end
 
     def columns_for(model)
-      model.attributes.values_at(*header.column_definition_names)
+      model.attributes.values_at(*header.columns_with_definition_names)
     end
 
     # Error from the model mapped back to the CSV header if we can

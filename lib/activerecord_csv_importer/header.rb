@@ -15,6 +15,10 @@ module ActiveRecordCSVImporter
       end
     end
 
+    def columns_with_definition_names
+      columns.select(&:definition).map(&:name)
+    end
+
     def column_name_for_model_attribute(attribute)
       column = columns.find { |c|
         c.definition.attribute == attribute if c.definition
@@ -42,16 +46,16 @@ module ActiveRecordCSVImporter
       (column_definitions - columns.map(&:definition)).map(&:name).map(&:to_s)
     end
 
-    def column_definition_names
-      column_definitions.map(&:name).map(&:to_s)
-    end
-
     private
 
     def find_column_definition(name)
       column_definitions.find { |column_definition|
         column_definition.match?(name)
       }
+    end
+
+    def column_definition_names
+      column_definitions.map(&:name).map(&:to_s)
     end
   end
 end
