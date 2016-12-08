@@ -33,7 +33,7 @@ module ActiveRecordCSVImporter
       if column_definition.to && column_definition.to.is_a?(Proc)
         column_definition.to.call(csv_value)
       else
-        column_definition.attribute
+        csv_value
       end
     end
   end

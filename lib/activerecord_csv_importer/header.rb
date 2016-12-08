@@ -15,8 +15,14 @@ module ActiveRecordCSVImporter
       end
     end
 
+    # original csv column names
     def columns_with_definition_names
       columns.select(&:definition).map(&:name)
+    end
+
+    # mapped column names
+    def column_definition_names
+      column_definitions.map(&:name).map(&:to_s)
     end
 
     def column_name_for_model_attribute(attribute)
@@ -52,10 +58,6 @@ module ActiveRecordCSVImporter
       column_definitions.find { |column_definition|
         column_definition.match?(name)
       }
-    end
-
-    def column_definition_names
-      column_definitions.map(&:name).map(&:to_s)
     end
   end
 end
