@@ -38,7 +38,7 @@ module ActiveRecordCSVImporter
     end
 
     def import_rows(set)
-      config.model.import(header.columns_with_definition_names.dup, set, config.on_duplicate_key)
+      config.model.import(header.column_definition_names.dup, set, config.on_duplicate_key)
     end
 
     def add_to_report(response, set)
