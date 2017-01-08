@@ -16,6 +16,7 @@ module ActiveRecordCSVImporter
 
     attribute :parser_error, String
 
+    attribute :ids, Array, default: []
     attribute :total_count, Integer, default: 0
     attribute :completed_count, Integer, default: 0
     attribute :invalid_rows, Array[Array], default: {}

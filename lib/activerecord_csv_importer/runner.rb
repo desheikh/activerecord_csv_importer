@@ -42,6 +42,7 @@ module ActiveRecordCSVImporter
     end
 
     def add_to_report(response, set)
+      report.ids += response.ids
       report.completed_count += set.length
 
       response.failed_instances.each do |model|
