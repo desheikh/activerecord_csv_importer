@@ -22,7 +22,7 @@ module ActiveRecordCSVImporter
 
     # mapped column names
     def column_definition_names
-      column_definitions.map(&:name).map(&:to_s)
+      columns.map { |c| c.definition.name if c.definition }.compact
     end
 
     def column_name_for_model_attribute(attribute)
