@@ -30,11 +30,21 @@ module ActiveRecordCSVImporter
 
     def persist_rows!
       rows.in_groups_of(config.batch_size, false) do |set|
-        response = import_rows(set)
+        response = import_rows(dedupe(set))
 
         add_to_report(response, set)
         config.each_batch_blocks.each { |block| block.call(report) }
       end
+    end
+
+    # prevent PG::CardinalityViolation
+    def dedupe(set)
+      conflict_target = config.on_duplicate_key.dig(:on_duplicate_key_update, :conflict_target)
+      return set unless conflict_target
+
+      column_name = conflict_target.last.to_s
+      i = header.columns.index { |c| c.name == column_name }
+      set.uniq { |s| s[i] }
     end
 
     def import_rows(set)
