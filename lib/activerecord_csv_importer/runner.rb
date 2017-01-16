@@ -42,8 +42,7 @@ module ActiveRecordCSVImporter
       conflict_target = config.on_duplicate_key.dig(:on_duplicate_key_update, :conflict_target)
       return set unless conflict_target
 
-      column_name = conflict_target.last.to_s
-      i = header.columns.index { |c| c.name == column_name }
+      i = header.column_definition_names.index(conflict_target.last)
       set.uniq { |s| s[i] }
     end
 
