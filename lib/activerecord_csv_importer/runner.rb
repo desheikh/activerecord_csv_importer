@@ -60,7 +60,7 @@ module ActiveRecordCSVImporter
     end
 
     def columns_for(model)
-      model.attributes.values_at(*header.columns_with_definition_names)
+      model.attributes.values_at(*header.column_definition_names.map(&:to_s))
     end
 
     # Error from the model mapped back to the CSV header if we can
