@@ -46,6 +46,8 @@ module ActiveRecordCSVImporter
     def match?(column_name, search_query = (as || name))
       return false if column_name.nil?
 
+      column_name.gsub!("\xEF\xBB\xBF", '') #strip BOM
+
       downcased_column_name = column_name.downcase
       underscored_column_name = downcased_column_name.gsub(/\s+/, '_')
 
