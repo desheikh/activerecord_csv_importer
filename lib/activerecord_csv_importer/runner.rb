@@ -66,9 +66,9 @@ module ActiveRecordCSVImporter
     # Error from the model mapped back to the CSV header if we can
     def build_error(model)
       Hash[
-        model.errors.map do |attribute, errors|
-          column_name = header.column_name_for_model_attribute(attribute)
-          column_name ? [column_name, errors] : [attribute, errors]
+        model.errors.map do |e|
+          column_name = header.column_name_for_model_attribute(e.attribute)
+          column_name ? [column_name, e.type] : [e.attribute, e.type]
         end
       ]
     end
