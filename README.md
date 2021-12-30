@@ -1,5 +1,7 @@
 # ActiveRecordCSVImporter
 
+[![Ruby](https://github.com/desheikh/activerecord_csv_importer/actions/workflows/ruby.yml/badge.svg)](https://github.com/desheikh/activerecord_csv_importer/actions/workflows/ruby.yml)
+
 ActiveRecordCSVImporter is a modified version CSVImporter, which uses activerecord-import to speed up processing.
 
 The key difference with CSVImporter is the removal of callback support, since that is incompatible with bulk inserts. Additional config options are available instead to deal with batching and index conflicts.
@@ -317,7 +319,7 @@ import.run!
 You can handle exotic encodings with the `encoding` option.
 
 ```ruby
-ImportUserCSV.new(content: "メール,氏名".encode('SJIS'), encoding: 'SJIS:UTF-8')
+ImportUserCSV.new(content: "メール,氏名".encode('SJIS'), encoding: 'UTF-8')
 ```
 
 ## TODO
@@ -337,4 +339,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/deshei
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-

@@ -3,7 +3,7 @@ require 'spec_helper'
 module ActiveRecordCSVImporter
   describe CSVReader do
     it 'removes invalid byte sequences' do
-      content = "email,first_name,\xFFlast_name\x81".force_encoding('ASCII-8BIT')
+      content = "email,first_name,\xFFlast_name\x81".dup.force_encoding('ASCII-8BIT')
       reader = CSVReader.new(content: content)
       expect(reader.header).to eq %w(email first_name last_name)
     end
@@ -35,7 +35,7 @@ module ActiveRecordCSVImporter
     end
 
     it 'supports custom encoding' do
-      reader = CSVReader.new(content: 'メール,氏名'.encode('SJIS'), encoding: 'SJIS:UTF-8')
+      reader = CSVReader.new(content: 'メール,氏名'.encode('SJIS'), encoding: 'UTF-8')
       expect(reader.header).to eq %w(メール 氏名)
     end
   end
