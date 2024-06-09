@@ -2,7 +2,7 @@
 
 [![Ruby](https://github.com/desheikh/activerecord_csv_importer/actions/workflows/ruby.yml/badge.svg)](https://github.com/desheikh/activerecord_csv_importer/actions/workflows/ruby.yml)
 
-ActiveRecordCSVImporter is a modified version CSVImporter, which uses activerecord-import to speed up processing.
+ActiveRecordCSVImporter is a modified version of CSVImporter, which uses activerecord-import to speed up processing.
 
 The key difference with CSVImporter is the removal of callback support, since that is incompatible with bulk inserts. Additional config options are available instead to deal with batching and index conflicts.
 
